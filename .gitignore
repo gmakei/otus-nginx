@@ -5,7 +5,7 @@ cache/
 ssl/private/ 
 *.key
 
-
+# Directories for ignoring
 conf.d/
 fastcgi.conf
 fastcgi_params
@@ -14,12 +14,18 @@ koi-win
 mime.types
 modules-available/
 modules-enabled/
-nginx.conf
+#nginx.conf
 nginx.conf.bak
 proxy_params
 scgi_params
-#sites-available/
 sites-enabled/
 snippets/
 uwsgi_params
 win-utf
+
+# Directory for ignoring
+sites-available/
+#Except files
+!sites-available/
+!sites-available/default
+!sites-available/mysite.conf
