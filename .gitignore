@@ -22,6 +22,8 @@ sites-enabled/
 snippets/
 uwsgi_params
 win-utf
+#sites-available/default.bak
+#sites-available/default.bak_after_lesson
 
 # Directory for ignoring
 sites-available/
@@ -29,3 +31,6 @@ sites-available/
 !sites-available/
 !sites-available/default
 !sites-available/mysite.conf
+
+sites-available/default.bak
+sites-available/default.bak_after_lesson

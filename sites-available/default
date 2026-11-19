@@ -1,0 +1,41 @@
+##########################################################
+# Balance server
+
+upstream backend {
+	server 127.0.0.1:8091;
+	server 127.0.0.1:8092;
+	server 127.0.0.1:8093;
+}
+
+# Server configuration
+#
+
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /var/www/html;
+
+	# Add index.php to the list if you are using PHP
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name _;
+	
+	# This location for Reverse proxy to Apache BE Web-server
+	location / {
+			proxy_pass http://backend;
+			proxy_set_header Host $host;
+			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+			proxy_set_header X-Real-IP $remote_addr;
+	}	
+
+	# This location for icons directory of the Reverse proxy to Apache BE Web-server
+	location /icons/ {
+		alias "/usr/share/apache2/icons/";
+	}
+
+	# This location(alias) that providing static files
+#	location ~* \.(js|css|jpe?g|png|woff2|txt)$ {
+#		alias "/usr/share/apache2/icons/";
+#	}
+}
